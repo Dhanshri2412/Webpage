@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSpace - Courses</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <ul>
+            <li><a href="HomePage.html">Home</a></li>
+            <li><a href=AboutUs.html">About Us</a></li>
+            <li><a href="productt.html">Courses</a></li>
+            <li><a href="LoginPage.html">Login</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </header>
+    
+    <section class="course-hero">
+        <h1>Enhance Your Skills with Our Online Courses</h1>
+        <p>Choose from a wide range of courses to upskill and grow your knowledge.</p>
+    </section>
+    
+    <section class="course-list">
+        <div class="course-item">
+            <h2>Python Programming</h2>
+            <p>Learn Python from scratch with hands-on projects.</p>
+            <span class="price">$49.99</span>
+            <button onclick='addCourse({name: "Python Programming", price: 49.99})'>Enroll Now</button>
+        </div>
+        
+        <div class="course-item">
+            <h2>Data Science Essentials</h2>
+            <p>Master the fundamentals of data science and analytics.</p>
+            <span class="price">$59.99</span>
+            <button onclick='addCourse({name: "Data Science Essentials", price: 59.99})'>Enroll Now</button>
+        </div>
+        
+        <div class="course-item">
+            <h2>Full-Stack Web Development</h2>
+            <p>Build dynamic and responsive websites from scratch.</p>
+            <span class="price">$39.99</span>
+            <button onclick='addCourse({name: "Full-Stack Web Development", price: 39.99})'>Enroll Now</button>
+        </div>
+    </section>
+
+    <script>
+        let cart = [];
+        const cartCount = document.getElementById("cart-count");
+        function addCourse(courseDetails) {
+            cart.push(courseDetails);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            cartCount.innerText = `(${cart.length})`;
+        }
+        function init() {
+            const savedCart = JSON.parse(localStorage.getItem('cart'));
+            if (savedCart) {
+                cart = [...savedCart];
+                cartCount.textContent = `(${cart.length})`;
+            }
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>
